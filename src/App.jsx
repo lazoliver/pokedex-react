@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import api from './services/api'
 
 const App = () => {
   const [ pokemon, setPokemon ] = useState([]);
@@ -8,6 +9,24 @@ const App = () => {
 
   const handleChange = (event) => {
     setTypedPokemon(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.prevent.default();
+    if(!typedPokemon) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await api.get(`/pokemon/${typedPokemon}`);
+      setPokemon(response.data);
+      setError(null);
+      setIsLoading(false);
+    } catch (error) {
+      setError("Pokemon não encontrado!");
+      setIsLoading(false);
+      setPokemon(null);
+    }
   };
 
   <div>
@@ -32,5 +51,6 @@ const App = () => {
         </button>
       </form>
   </div>
+};
 
-}
+export default App;
