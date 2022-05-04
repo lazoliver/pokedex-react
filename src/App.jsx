@@ -10,6 +10,27 @@ const App = () => {
     setTypedPokemon(event.target.value);
   };
 
-  
+  <div>
+    <h1>Pokedex Api do Mestre Wilian</h1>
+      <p>
+        Digite o nome ou id do pokemon para começar!
+      </p>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={typedPokemon}
+          placeholder="Nome do Pokemon ou ID"
+          onChange={handleChange}  
+        />
+        <button type="submit">
+          {isLoading ? (
+            <span>Carregando...</span>
+          ) : (
+            <>
+              Buscar
+            </>
+          )}
+        </button>
+      </form>
+  </div>
 
 }
