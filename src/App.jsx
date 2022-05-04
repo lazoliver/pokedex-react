@@ -6,6 +6,10 @@ const App = () => {
   const [ typedPokemon, setTypedPokemon ] = useState('');
   const [ isLoading, setIsLoading ] = useState(false);
 
-    
+  const handleChange = (event) => {
+    setTypedPokemon(event.target.value);
+  };
+
+  
 
 }
