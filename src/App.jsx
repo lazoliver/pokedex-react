@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import api from './services/api'
 
 const App = () => {
-  const [ pokemon, setPokemon ] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+  const [ pokemon, setPokemon ] = useState(null);
   const [ error, setError ] = useState(null);
   const [ typedPokemon, setTypedPokemon ] = useState('');
   const [ isLoading, setIsLoading ] = useState(false);
@@ -29,9 +28,10 @@ const App = () => {
       setPokemon(null);
     }
   };
+
   return(
     <div>
-      <h1>Pokedex Api do Mestre Wilian</h1>
+      <h1>Pokedex</h1>
         <p>
           Digite o nome ou id do pokemon para começar!
         </p>
@@ -46,13 +46,13 @@ const App = () => {
               <span>Carregando...</span>
             ) : (
               <>
-                Buscar
+                <p>Buscar</p>
               </>
             )}
           </button>
         </form>
-        {
-          pokemon && (
+        {error && <span>{error}</span>}
+          {pokemon && (
             <div key={pokemon.id}>
               {isLoading ? (
                 <p>Loading...</p>
@@ -61,16 +61,22 @@ const App = () => {
                   <div>
                     <h2>{pokemon.name}</h2>
                     <img
-                      src={pokemon.sprites['front-default']}
+                      src={pokemon.sprites['front_default']}
                       alt={pokemon.name}
                     />
                   </div>
                   <div>
                     <span>
-                      <strong>Type</strong> : {pokemon.types[0].type.name}
+                      <strong>Height</strong> : {pokemon.height * 10} cm<br/>
                     </span>
                     <span>
-                      <strong>ID</strong> : {pokemon.id}
+                      <strong>Weight</strong> : {pokemon.weight / 10} Kg<br/>
+                    </span>
+                    <span>
+                      <strong>Type</strong> : {pokemon.types[0].type.name}<br/>
+                    </span>
+                    <span>
+                      <strong>Id</strong> : {pokemon.id}<br/>
                     </span>
                   </div>
                 </>
@@ -79,7 +85,7 @@ const App = () => {
           )
         }
     </div>
-  )
+  );
 };
 
 export default App;
