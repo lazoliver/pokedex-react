@@ -1,9 +1,11 @@
-function App() {
-  return(
-    <div>
-      <h1>Pokedex</h1>
-    </div>
-  )
-};
+import React, { useState } from 'react';
 
-export default App;
+const App = () => {
+  const [ pokemon, setPokemon ] = useState([]);
+  const [ error, setError ] = useState(null);
+  const [ typedPokemon, setTypedPokemon ] = useState('');
+  const [ isLoading, setIsLoading ] = useState(false);
+
+    
+
+}
